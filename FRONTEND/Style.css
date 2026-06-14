@@ -1,0 +1,50 @@
+
+
+
+
+body {
+  background-color: #000000;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+.topbar {
+  display: flex;
+  flex-direction: column;
+  background: #0b0b0b;
+  border-bottom: 1px solid #222;
+}
+
+.stim-nav,
+.term-nav {
+  display: flex;
+  gap: 10px;
+  padding: 10px 14px;
+}
+
+.divider {
+  height: 1px;
+  background: #222;
+}
+
+.tab {
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid #333;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.tab.active {
+  border-color: #4caf50;
+  box-shadow: 0 0 0 1px rgba(76, 175, 80, 0.25) inset;
+}
+
+.app {
+  padding: 16px;
+  min-height: calc(100vh - 90px);
+}
+
+
