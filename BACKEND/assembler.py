@@ -78,4 +78,4 @@ def assemble(source_code):
 
         pc += 4     # Each instruction is 4 bytes (32-bit)
 
-    return instructions
+    return instructions 

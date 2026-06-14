@@ -6,34 +6,80 @@
     <title>RISC-V Simulator</title>
     <link rel="stylesheet" href="Style.css">
     <script defer src="app.js"></script>
-
 </head>
 <body>
+
     <header class="topbar">
         <nav class="stim-nav">
-            <button class="tab active" type="button">Mars</button>
-            <button class="tab active" type="button">Stimulator</button>
-            <button class="tab" type="button">Editor</button>
+            <button class="tab active" data-tab="mars">Mars</button>
+            <button class="tab" data-tab="simulator">Stimulator</button>
+            <button class="tab" data-tab="editor">Editor</button>
         </nav>
         <div class="divider"></div>
         <nav class="term-nav">
-            <button class="tab" type="button">Terminal</button>
-            <button class="tab" type="button">Files</button>
-            <button class="tab" type="button">URLs</button>
+            <button class="tab" data-tab="terminal">Terminal</button>
+            <button class="tab" data-tab="files">Files</button>
+            <button class="tab" data-tab="urls">URLs</button>
         </nav>
     </header>
 
     <main id="app" class="app">
-        div class="panel-container">
-        <div class="left-panel">
-            <h2>Left Panel</h2>
+        
+        <div id="error-banner" class="error-banner hidden">
+            <span id="error-message"></span>
         </div>
 
-        <div class="right-panel">
-            <h1>Right Panel</h1>
+        <div class="panel-container">
+            
+            <div class="panel panel-left" id="panel-simulator">
+                
+                <div class="editor-header">
+                    <span>Assembly Editor</span>
+                    <div class="editor-actions">
+                        <button id="btn-run" type="button">Run</button>
+                        <button id="btn-step" type="button">Step</button>
+                    </div>
+                </div>
+
+                <textarea id="code-editor" spellcheck="false" placeholder="# Write RISC-V assembly here&#10;addi x1, x0, 5&#10;add x2, x1, x1"></textarea>
+
+                <div class="binary-view">
+                    <h3>Instruction Encoding</h3>
+                    <div id="binary-output"></div>
+                </div>
+
+            </div>
+
+            <div class="panel panel-right" id="panel-register">
+                
+                <div class="section register-section">
+                    <h3>Register File</h3>
+                    <table id="register-table">
+                        <thead>
+                            <tr>
+                                <th>Register</th>
+                                <th>ABI Name</th>
+                                <th>Value (hex)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="register-body">
+                            </tbody>
+                    </table>
+                </div>
+
+                <div class="section log-section">
+                    <div class="log-header">
+                        <h3>Execution Log</h3>
+                        <button id="btn-clear" type="button">Clear</button>
+                    </div>
+                    <div id="log-output"></div>
+                </div>
+
+            </div>
+
         </div>
-    </div>
 
     </main>
+
 </body>
 </html>
