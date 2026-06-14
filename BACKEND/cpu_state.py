@@ -4,13 +4,13 @@ class CPUState:
         self.pc = 0  # Program counter
         self.memory = {}  # Simulated memory as a dictionary
     
-    def write_register(self, rd, value):
+    def write_reg(self, rd, value):
         if 0 <= rd < len(self.registers):
             self.registers[rd] = value & 0xFFFFFFFF  # Ensure 32-bit value
         else:
             raise ValueError("Invalid register number")
     
-    def read_register(self, rs):
+    def read_reg(self, rs):
         if 0 <= rs < len(self.registers):
             return self.registers[rs]
         else:
