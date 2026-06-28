@@ -189,12 +189,7 @@ function clearLog() {
     document.getElementById('log-output').innerHTML = '';
 }
 
-document.querySelectorAll('.tab[data-tab]').forEach(tab => {
-    tab.addEventListener('click', () => {
-        tab.closest('nav').querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-    });
-});
+
 
 initRegisterTable();
 

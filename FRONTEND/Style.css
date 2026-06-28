@@ -17,52 +17,16 @@ html, body {
     display: none !important;
 }
 
-.topbar {
-    display: flex;
-    flex-direction: column;
-    background: #0b0b0b;
-    border-bottom: 1px solid #222;
-}
-
-.stim-nav, .term-nav {
-    display: flex;
-    gap: 10px;
-    padding: 10px 14px;
-}
-
-.divider {
-    height: 1px;
-    background: #222;
-}
-
-.tab {
-    background: transparent;
-    color: #ffffff;
-    border: 1px solid #333;
-    padding: 8px 12px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.tab:hover {
-    border-color: #555;
-    background: #111;
-}
-
-.tab.active {
-    border-color: #4caf50;
-    box-shadow: 0 0 0 1px rgba(76, 175, 80, 0.25) inset;
-}
-
 .app {
     padding: 16px;
-    height: calc(100vh - 110px);
+    height: 100vh;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
+
+
 
 .panel-container {
     display: grid;
