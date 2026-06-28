@@ -15,16 +15,16 @@ ABI_NAMES = {
 
 def parse_operand(op):
     op = op.strip()
-    if op in ABI_NAMES:                              # catch any missed ABI names
+    if op in ABI_NAMES:
         op = ABI_NAMES[op]
     if op.startswith('0x') or op.startswith('0X'):
         return int(op, 16)
-    if op.startswith('x') and op[1:].isdigit():     # it's already xN
-        return int(op[1:])                           # return the register number
-    if op.lstrip('-').isdigit():                     # immediate (positive or negative)
+    if op.startswith('x') and op[1:].isdigit():
+        return int(op[1:])
+    if op.lstrip('-').isdigit():
         return int(op)
-    return op      
-    
+    return op
+
 
 def tokenize(source_code):
     token_list = []
@@ -36,12 +36,9 @@ def tokenize(source_code):
             continue
         if line.endswith(':'):
             label_name = line[:-1].strip()
-            token_list.append({
-                'type': 'LABEL', 
-                'value': label_name
-            })
+            token_list.append({'type': 'LABEL', 'value': label_name})
             continue
-        
+
         parts = line.split(None, 1)
         mnemonic_raw = parts[0]
         operand_str = parts[1] if len(parts) > 1 else ''
@@ -49,11 +46,10 @@ def tokenize(source_code):
         operand_str = re.sub(
             r'\b(zero|ra|sp|gp|tp|t[0-6]|s[0-9]+|a[0-7]|x\d+)\b',
             lambda m: ABI_NAMES.get(m.group(1), m.group(1)),
-            operand_str
+            operand_str,
         )
 
         line = mnemonic_raw + ' ' + operand_str
-
         line = re.sub(r'(-?\d+)\(([^)]+)\)', r'\1, \2', line)
 
         raw_parts = re.split(r'[\s,]+', line)
@@ -61,14 +57,10 @@ def tokenize(source_code):
 
         if not raw_parts:
             continue
-        
+
         mnemonic = raw_parts[0].upper()
-        
         operands = [parse_operand(op) for op in raw_parts[1:]]
-        token_list.append({
-            'type': 'INSTRUCTION',
-            'mnemonic': mnemonic,
-            'operands': operands
-        })
+        token_list.append({'type': 'INSTRUCTION', 'mnemonic': mnemonic, 'operands': operands})
 
     return token_list
+
